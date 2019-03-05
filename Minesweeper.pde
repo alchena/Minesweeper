@@ -120,7 +120,13 @@ public class MSButton
     public int countBombs(int row, int col)
     {
         int numBombs = 0;
-        //your code here
+        for(int r = row - 1; r < row + 1; r++){
+            for(int c = col - 1; c < col + 1; c++){
+                if(isValid(r, c) == true){
+                    
+                }
+            }
+        }
         return numBombs;
     }
 }
