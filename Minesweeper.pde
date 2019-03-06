@@ -1,5 +1,3 @@
-
-
 import de.bezier.guido.*;
 int NUM_ROWS = 20;
 int NUM_COLS = 20;
@@ -49,7 +47,7 @@ public boolean isWon()
 }
 public void displayLosingMessage()
 {
-    //your code here
+    text("You lose", 200, 100);
 }
 public void displayWinningMessage()
 {
@@ -88,7 +86,19 @@ public class MSButton
     public void mousePressed () 
     {
         clicked = true;
-        //your code here
+        if(mouseButton == RIGHT){
+            if(marked == false){
+                marked = true;
+                clicked = true;
+            }
+            if(marked == true){
+                marked = false;
+                clicked = false;
+            }
+        }
+        else if(bombs.contains(this)){
+            displayLosingMessage();
+        }
     }
 
     public void draw () 
@@ -117,19 +127,33 @@ public class MSButton
         }
         return false;
     }
-    public int countBombs(int row, int col)
-    {
+    public int countBombs(int row, int col){
         int numBombs = 0;
         for(int r = row - 1; r < row + 1; r++){
-            for(int c = col - 1; c < col + 1; c++){
-                if(isValid(r, c) == true){
-                    
+            for(int c = col - 1; c < col + 1; col++){
+                if((isValid(r, c) == true) && (bombs.contains(buttons[r][c]))){
+                    numBombs++;
                 }
             }
         }
         return numBombs;
     }
 }
+
+
+    /*for(int i = 0; i < bombs.size(); i ++){
+            for(int r = row - 1; r < row + 1; r++){
+                for(int c = col - 1; c < col + 1; c++){
+                    if(isValid(r, c) == true){
+                       if(buttons[r][c].equals(bombs.get(i))){
+                        numBombs++;
+                       }
+                    }
+                }
+            }
+        }
+
+*/
 
 
 
