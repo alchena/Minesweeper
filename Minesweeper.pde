@@ -95,9 +95,17 @@ public class MSButton
         }
         else if(bombs.contains(this)){
             displayLosingMessage();
-        } else {
-            if(isValid(r, c-1) == true && buttons[r][c - 1].isMarked() == false && !bombs.contains(buttons[r][c-1])){
-                buttons[r][c-1].mousePressed();
+        } 
+
+        else if(){
+
+        }else {
+            for(int row = r - 1; row <= r + 1; row++){
+                for(int col = c - 1; col <= c + 1; col++){
+                    if(isValid(row, col) && (buttons[row][col].isClicked() == false)){
+                        buttons[row][col].mousePressed();
+                    }
+                }
             }
         }
     }
@@ -123,7 +131,7 @@ public class MSButton
     }
     public boolean isValid(int r, int c)
     {   
-        if((r - 1 >= 0 && r + 1 < NUM_ROWS) && (c - 1 >= 0 && c + 1 < NUM_COLS)){
+        if((r >= 0 && r < NUM_ROWS) && (c >= 0 && c < NUM_COLS)){
             return true;
         }
         return false;
