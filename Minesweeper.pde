@@ -48,6 +48,7 @@ public boolean isWon()
 public void displayLosingMessage()
 {
     text("You lose", 200, 100);
+    fill(230);
 }
 public void displayWinningMessage()
 {
@@ -87,17 +88,17 @@ public class MSButton
     {
         clicked = true;
         if(mouseButton == RIGHT){
+            marked = !marked;
             if(marked == false){
-                marked = true;
-                clicked = true;
-            }
-            if(marked == true){
-                marked = false;
                 clicked = false;
             }
         }
         else if(bombs.contains(this)){
             displayLosingMessage();
+        } else {
+            if(isValid(r, c-1) == true && buttons[r][c - 1].isMarked() == false && !bombs.contains(buttons[r][c-1])){
+                buttons[r][c-1].mousePressed();
+            }
         }
     }
 
@@ -152,8 +153,4 @@ public class MSButton
                 }
             }
         }
-
 */
-
-
-
