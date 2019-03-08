@@ -1,3 +1,5 @@
+
+
 import de.bezier.guido.*;
 int NUM_ROWS = 20;
 int NUM_COLS = 20;
@@ -97,8 +99,8 @@ public class MSButton
             displayLosingMessage();
         } 
 
-        else if(){
-
+        else if(countBombs(r,c) > 0){
+            label = ""+ countBombs(r,c);
         }else {
             for(int row = r - 1; row <= r + 1; row++){
                 for(int col = c - 1; col <= c + 1; col++){
