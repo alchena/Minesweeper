@@ -1,7 +1,3 @@
-
-
-
-
 import de.bezier.guido.*;
 int NUM_ROWS = 20;
 int NUM_COLS = 20;
@@ -23,7 +19,7 @@ void setup ()
             buttons[r][c] = new MSButton(r, c);
         }
     }
-    for(int num = 0; num < 20; num++){
+    for(int num = 0; num < 2; num++){
         setBombs();
     }
 }
@@ -46,17 +42,35 @@ public void draw ()
 }
 public boolean isWon()
 {
-    //your code here
-    return false;
+    for(int r = 0; r < buttons.length; r ++){
+        for(int c = 0; c < buttons[r].length; c++){
+            if(bombs.contains(buttons[r][c].isClicked()) && bombs.contains(buttons[r][c].isMarked())){
+                return false;
+            }
+        }
+    }
+    return true;
 }
 public void displayLosingMessage()
 {
-    text("You lose", 200, 100);
+    buttons[NUM_ROWS/2][NUM_COLS/2 - 4].setLabel("Y");
+    buttons[NUM_ROWS/2][NUM_COLS/2 - 3].setLabel("O");
+    buttons[NUM_ROWS/2][NUM_COLS/2 - 2].setLabel("U");
+    buttons[NUM_ROWS/2][NUM_COLS/2 - 1].setLabel("L");
+    buttons[NUM_ROWS/2][NUM_COLS/2].setLabel("O");
+    buttons[NUM_ROWS/2][NUM_COLS/2 + 1].setLabel("S");
+    buttons[NUM_ROWS/2][NUM_COLS/2 + 2].setLabel("E");
     fill(230);
 }
 public void displayWinningMessage()
 {
-    //your code here
+    buttons[NUM_ROWS/2][NUM_COLS/2 - 3].setLabel("Y");
+    buttons[NUM_ROWS/2][NUM_COLS/2 - 2].setLabel("O");
+    buttons[NUM_ROWS/2][NUM_COLS/2 - 1].setLabel("U");
+    buttons[NUM_ROWS/2][NUM_COLS/2].setLabel("W");
+    buttons[NUM_ROWS/2][NUM_COLS/2 + 1].setLabel("I");
+    buttons[NUM_ROWS/2][NUM_COLS/2 + 2].setLabel("N");
+    fill(230);
 }
 
 public class MSButton
@@ -91,10 +105,7 @@ public class MSButton
     public void mousePressed () 
     {
         clicked = true;
-        if(mouseButton == LEFT && !buttons[r][c].isMarked()){
-            clicked = true;
-        }
-        if(mouseButton == RIGHT && !buttons[r][c].isClicked()){
+        if(mouseButton == RIGHT){
             marked = !marked;
             if(marked == false){
                 clicked = false;
