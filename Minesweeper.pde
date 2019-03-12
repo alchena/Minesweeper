@@ -42,14 +42,24 @@ public void draw ()
 }
 public boolean isWon()
 {
+    int counterFlag = 0;
+    int counterButtons = 0;
+    for(int i = 0; i < bombs.size(); i++){
+        if(bombs.get(i).isMarked() == true){
+            counterFlag++;
+        }
+    }
     for(int r = 0; r < buttons.length; r ++){
         for(int c = 0; c < buttons[r].length; c++){
-            if(bombs.contains(buttons[r][c].isClicked()) && bombs.contains(buttons[r][c].isMarked())){
-                return false;
+            if(buttons[r][c].isClicked() == true){
+                counterButtons++;
             }
         }
     }
-    return true;
+    if(counterFlag == bombs.size()){
+        return true;
+    }
+    return false;
 }
 public void displayLosingMessage()
 {
